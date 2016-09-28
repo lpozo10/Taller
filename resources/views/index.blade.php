@@ -5,10 +5,7 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        {{ dd($mes) }}
         <h3 class="box-title"><strong>Mapa</strong></h3>
-    }
-    }
     </div><!-- /.box-header -->
     <div class="box-body no-padding">
         <div class="row">
