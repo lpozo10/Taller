@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'HomeController@index'); 
+Route::get('/Grafico', 'HomeController@indexGrafico'); 
+Route::get('/MapaYGrafico', 'HomeController@indexAmbos');
