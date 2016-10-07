@@ -8,19 +8,15 @@
                 </span>
             </div>
         </form>
-        <ul class="sidebar-menu">
-            <li class="header">Menú</li>                    
-            <li class="active treeview">
-                <a href="#">
-                    <i class="fa fa-hand-o-up"></i> <span>Seleccion</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>Puntual</a></li>
-                    <li><a href="index.html"><i class="fa fa-circle-o"></i>Varios puntos</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Rectangular</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Poligonal</a></li>
-                </ul>
-            </li>
+        <ul class="sidebar-menu" id="type2">
+            <li class="header">Selección</li> 
+            <li class="active" id="other" value="None"><a href=""><i class="fa fa-circle-o"></i>Puntual</a></li>
+            <li id="type2" value="Point"><a href=""><i class="fa fa-circle-o"></i>Varios puntos</a></li>
+            <li id="type2" value="Box"><a href=""><i class="fa fa-circle-o"></i>Rectangular</a></li>
+            <li id="type2" value="1"><a href=""><i class="fa fa-circle-o"></i>Poligonal</a></li>
+        </ul>
+        <ul class="sidebar-menu" id="type2">
+            <li class="header">Fecha</li> 
         </ul>
     </section>
 </aside>

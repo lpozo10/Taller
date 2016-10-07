@@ -9,4 +9,13 @@ class HomeController extends Controller {
 		return view('index');
 	}
 
+	public function indexGrafico()
+	{
+		return view('indexGrafico');
+	}
+
+	public function indexAmbos()
+	{
+		return view('indexAmbos');
+	}
 }
