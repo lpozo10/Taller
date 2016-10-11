@@ -18,7 +18,52 @@
     <link rel="stylesheet" href="{{ asset('/ol3-layerswitcher-master/src/ol3-layerswitcher.css') }}" />
     <script src="{{ asset('/ol3-layerswitcher-master/src/ol3-layerswitcher.js') }}"></script>
 
+
 	<style type='text/css'>
+ .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 16px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: transparent;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;  
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+  .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
     .my-legend .legend-title {
       text-align: center;
       margin-bottom: 5px;
@@ -144,6 +189,7 @@
         </div>
     </div>
 </aside>
+@include('includes.sidebarrigth') 
 <div class="control-sidebar-bg"></div>
 
 </div><!-- ./wrapper -->
@@ -166,6 +212,21 @@ $("#datepicker").datepicker( {
     viewMode: "years", 
     minViewMode: "years"
 });
+$(document).ready(function(){
+    $('[data-toggle="control-sidebar"]').tooltip();
+});
+$(document).ready(function(){
+    $('[data-toggle="control-dibujo"]').tooltip();
+});
+function mostrar(id_side){  
+document.getElementById(id_side).style.display = 'block';}
+
+function ocultar(){
+document.getElementById('side_ir_a').style.display = 'none'
+document.getElementById('side_descargar').style.display = 'none'
+document.getElementById('side_seleccionar').style.display = 'none'
+document.getElementById('side_fecha').style.display = 'none';}
+
 </script>
 <script>
 
@@ -234,10 +295,10 @@ var categorias = new ol.layer.Group({
         visible: false,
         source: new ol.source.ImageWMS({
             ratio: 1,
-            url: 'http://tomcat7.curi.co.uk:80/geoserver/gis4/wms',
+            url: 'http://tomcat7.curi.co.uk:80/geoserver/taller2/wms',
             params: {'FORMAT': 'image/png',
             'VERSION': '1.1.1',  
-            LAYERS: 'gis4:gis4',
+            LAYERS: 'taller2:tmin_8',
             STYLES: '',
         },
         serverType: 'geoserver'
@@ -252,24 +313,8 @@ var categorias = new ol.layer.Group({
             serverType: 'geoserver'
         })
     }),
-    new ol.layer.Tile({    
-        title: 'Biomasa',
-        visible: false,
-        source: new ol.source.TileWMS({
-            url: 'http://sig.minenergia.cl/geoserver/men/wms',
-            params: {"LAYERS": 'men:biomasa_1d78990f_2d5a_4506_befa_04a30c925640'},
-            serverType: 'geoserver'
-        })
-    }),
-    new ol.layer.Tile({    
-        title: 'Solares',
-        visible: false,
-        source: new ol.source.TileWMS({
-            url: 'http://sig.minenergia.cl/geoserver/men/wms',
-            params: {"LAYERS": 'men:solares_fd0779de_0870_4194_b962_83a842d8c316'},
-            serverType: 'geoserver'
-        })
-    }),
+   
+    
     new ol.layer.Tile({    
         title: 'Lluvias',
         visible: false,
@@ -365,6 +410,7 @@ layerSwitcher.showPanel();
 
 typeSelect.onchange = function() {
     map.removeInteraction(draw);
+    console.log("Entro");
     addInteraction();
 };
 
