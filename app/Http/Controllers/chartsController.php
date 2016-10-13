@@ -49,24 +49,7 @@ class chartsController extends Controller
         $months = Month::find(1);
 
         return view('indexGrafico')-> with('lava',$lava)-> with('months',$months);
-
-
-        $reasons = $lava->DataTable();
-
-        $reasons->addStringColumn('Reasons')
-        ->addNumberColumn('Percent')
-        ->addRow(['Check Reviews', 5])
-        ->addRow(['Watch Trailers', 2])
-        ->addRow(['See Actors Other Work', 4])
-        ->addRow(['Settle Argument', 89]);
-
-        $lava-> ColumnChart('IMDB', $reasons, [
-        'title' => 'Titulo de la grafica',
-        'is3D' => true
-        ]);
-
-        return view('indexGrafico',compact('lava'));
-        
+      
 
     }
 
