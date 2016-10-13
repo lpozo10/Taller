@@ -2,6 +2,7 @@
 
 @section('content')
 
+
   <div id="perf_div"></div>
 
   <?= $lava->render('ColumnChart', 'Precipitaciones', 'perf_div') ?>
