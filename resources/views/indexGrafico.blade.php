@@ -4,7 +4,8 @@
 
   <div id="perf_div"></div>
 
-  <?= $lava->render('ColumnChart', 'Finances', 'perf_div') ?>
+  <?= $lava->render('ColumnChart', 'Precipitaciones', 'perf_div') ?>
+  <?= $months->name ?>
 
 
 @endsection

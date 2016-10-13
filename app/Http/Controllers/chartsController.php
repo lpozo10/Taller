@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Month;
 
 class chartsController extends Controller
 {
@@ -18,26 +20,37 @@ class chartsController extends Controller
     {
         $lava = new Lavacharts; // See note below for Laravel
 
-        $finances = $lava->DataTable();
+        $precipitaciones = $lava->DataTable();
 
-        $finances->addDateColumn('Year')
-                 ->addNumberColumn('Sales')
-                 ->addNumberColumn('Expenses')
-                 ->setDateTimeFormat('Y')
-                 ->addRow(['2004', 1000, 400])
-                 ->addRow(['2005', 1170, 460])
-                 ->addRow(['2006', 660, 1120])
-                 ->addRow(['2007', 1030, 54]);
+        $precipitaciones->addDateColumn('Months of Year')
+                 ->addNumberColumn('Precipitaciones')
+                 ->addRow(['January', 142])
+                 ->addRow(['February', 138])
+                 ->addRow(['March', 136])
+                 ->addRow(['April', 133])
+                 ->addRow(['May', 129])
+                 ->addRow(['June', 134])
+                 ->addRow(['July', 139])
+                 ->addRow(['August', 142])
+                 ->addRow(['September', 139])
+                 ->addRow(['October', 138])
+                 ->addRow(['November', 137])
+                 ->addRow(['December', 135]);
 
-        $lava->ColumnChart('Finances', $finances, [
-            'title' => 'Company Performance',
+        $lava->ColumnChart('Precipitaciones', $precipitaciones, [
+            'title' => 'Precipitaciones',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
                 'fontSize' => 14
             ]
         ]);
 
-        return view('indexGrafico',compact('lava'));
+        $months = Month::find(1);
+
+        return view('indexGrafico')-> with('lava',$lava)-> with('months',$months);
+
+        
+
     }
 
     /**

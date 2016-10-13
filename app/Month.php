@@ -3,10 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-class Answer extends Model
+class Month extends Model
 {
-    use SoftDeletes;
     //
 	/**
      * The database table used by the model.
@@ -27,10 +25,6 @@ class Answer extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','name' ];
+    protected $fillable = ['id','name'];
 
-    public function getQuestion()
-    {
-        return $this->belongsTo('App\Question', 'question_id', 'id');
-    }
 }
