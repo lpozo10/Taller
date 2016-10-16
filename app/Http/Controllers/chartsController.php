@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Khill\Lavacharts\Lavacharts;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use DB;
 use App\Month;
+use App\Rast;
 
 class chartsController extends Controller
 {
@@ -20,37 +21,50 @@ class chartsController extends Controller
     {
         $lava = new Lavacharts; // See note below for Laravel
 
+        $enero = DB::table('rast')->select(DB::raw('month.name,avg(ST_Value(rast, ST_SetSRID(ST_Point(-71.233333,-34.983333), 4326)))'))->join('register', 'register.id', '=', 'rast.id_register')->join('month', 'month.id', '=', 'register.id_month')->groupBy('month.name')->get();
 
-        $precipitaciones = $lava->DataTable();
+        //dd(count($enero));
 
-        $precipitaciones->addDateColumn('Months of Year')
-                 ->addNumberColumn('Precipitaciones')
-                 ->addRow(['January', 142])
-                 ->addRow(['February', 138])
-                 ->addRow(['March', 136])
-                 ->addRow(['April', 133])
-                 ->addRow(['May', 129])
-                 ->addRow(['June', 134])
-                 ->addRow(['July', 139])
-                 ->addRow(['August', 142])
-                 ->addRow(['September', 139])
-                 ->addRow(['October', 138])
-                 ->addRow(['November', 137])
-                 ->addRow(['December', 135]);
+        $variable = $lava->DataTable();
+        $variable->addDateColumn('Months of Year')
+                        ->addNumberColumn('T° mínima');
+                        for($i=0; $i<count($enero); $i++)
+                        {
 
-        $lava->ColumnChart('Precipitaciones', $precipitaciones, [
-            'title' => 'Precipitaciones',
+                            $variable->addRow([$enero[$i]->name, $enero[$i]->avg]);
+                        }
+        $lava->ColumnChart('variable', $variable, [
+            'title' => 'Temperatura Mínima',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
-                'fontSize' => 14
+                'fontSize' => 30
             ]
         ]);
+         
 
-        $months = Month::find(1);
-
-        return view('indexGrafico')-> with('lava',$lava)-> with('months',$months);
+        return view('indexGrafico')-> with('lava',$lava);
       
 
+    }
+
+    public function datosSegunVariable(int $variable)
+    {
+        if($variable == 1)//temperatura minima
+        {
+
+        }
+        else if ($variable == 2)// temperatura maxima
+        {
+
+        }
+        else if ($variable == 3)//variable
+        {
+
+        }
+        else// radiacion uv
+        {
+
+        }
     }
 
     /**

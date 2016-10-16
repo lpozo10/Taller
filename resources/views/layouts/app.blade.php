@@ -17,6 +17,8 @@
     <script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
     <link rel="stylesheet" href="{{ asset('/ol3-layerswitcher-master/src/ol3-layerswitcher.css') }}" />
     <script src="{{ asset('/ol3-layerswitcher-master/src/ol3-layerswitcher.js') }}"></script>
+    <link href="{{ asset('/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome -->
 
 	<style type='text/css'>
     .my-legend .legend-title {
@@ -159,6 +161,7 @@
 <script src="{{ asset('/plugins/chartjs/Chart.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/dist/js/pages/dashboard2.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/dist/js/demo.js') }}" type="text/javascript"></script>
+
 
 <script type="text/javascript">
 $("#datepicker").datepicker( {
