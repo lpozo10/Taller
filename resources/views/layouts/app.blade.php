@@ -385,12 +385,29 @@ function addInteraction() {
             maxPoints: maxPoints
         });
         draw.on("drawend", function(e) {
+            if(value== 'Circle'){
+               var circle = e.feature.getGeometry();
+                console.log('radius:' + circle.getRadius());
+                console.log('center:' + circle.getCenter()); 
+            }
+            if(value =='Point'){
+
+                var geometry = e.feature.getGeometry(); 
+                var coord = geometry.getCoordinates(); 
+                var lonlat = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
+                var lon = lonlat[0]; 
+                var lat = lonlat[1];
+                console.log(lon);
+                console.log(lat);
+            }
+            else{
             var feature = e.feature; 
             var featureClone = feature.clone();
             var formatGeoJSON = new ol.format.GeoJSON();
             featureClone.getGeometry().transform('EPSG:3857', 'EPSG:4326');
             var geojson = formatGeoJSON.writeFeature(featureClone);
-            console.log(geojson);  //aqui esta el geojson con las cordenadas y el tipo de figura veanlo por consola.
+            console.log(geojson); 
+            }
         });
         map.addInteraction(draw);        
     }    
