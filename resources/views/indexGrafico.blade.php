@@ -44,13 +44,11 @@
                   <div class="form-group">
                     <label>Variable</label>
                     <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
+                      <option selected="selected">Precipitación</option>
+                      <option>Temperatura mínima</option>
+                      <option>Temperatura máaxima</option>
+                      <option>Radiación UV</option>
+            
                     </select>
                   </div><!-- /.form-group -->
                   
