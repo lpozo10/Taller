@@ -17,17 +17,12 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-4">
+                <form role="form">
                   <div class="form-group">
                     <label>Periodo</label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
+                    {{ Form::select('number', [1, 2, 3], null, ['class' => 'field']) }}
+                    </div>
+                    </form>
                   </div><!-- /.form-group -->
                   </div><!-- /.col -->
                 <div class="col-md-4">
