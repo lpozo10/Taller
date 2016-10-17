@@ -20,7 +20,7 @@
                 <form role="form">
                   <div class="form-group">
                     <label>Periodo</label>
-                    {{ Form::select('number', [1, 2, 3], null, ['class' => 'field']) }}
+                    {!!Form::select('number', [1, 2, 3], null, ['class' => 'field']) !!}
                     </div>
                     </form>
                   </div><!-- /.form-group -->
