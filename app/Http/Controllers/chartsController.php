@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Khill\Lavacharts\Lavacharts;
@@ -12,10 +10,8 @@ use App\Rast;
 use App\Period;
 use App\Scenario;
 use App\Variable;
-
 class chartsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +20,7 @@ class chartsController extends Controller
     public function index()
     {
         $lava = new Lavacharts; // See note below for Laravel
-
         $enero = DB::table('rast')->select(DB::raw('month.name,avg(ST_Value(rast, ST_SetSRID(ST_Point(-71.233333,-34.983333), 4326)))'))->join('register', 'register.id', '=', 'rast.id_register')->join('month', 'month.id', '=', 'register.id_month')->groupBy('month.name')->get();
-
         $grafico = $lava->DataTable();
         $grafico->addDateColumn('Months of Year')
                         ->addNumberColumn('T° mínima');
@@ -45,12 +39,9 @@ class chartsController extends Controller
          $periodo = Period::all();
          $scenario = Scenario::all();
          $variable = Variable::all();
-
         return view('indexGrafico')-> with('lava',$lava)->with('periodo',$periodo)->with('scenario',$scenario)->with('variable',$variable);
       
-
     }
-
     public function postGrafico(Request $request)
     {
         
@@ -61,17 +52,12 @@ class chartsController extends Controller
         }
         else if ($variable == 2)// temperatura maxima
         {
-
         }
         else if ($variable == 3)//variable
         {
-
         }
         else// radiacion uv
         {
-
         }
     }
-
-
 }
