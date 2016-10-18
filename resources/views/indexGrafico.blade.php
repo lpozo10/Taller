@@ -23,7 +23,7 @@
                 {!!Form::select('Escenario', array_pluck($scenario, 'name', 'id'), null, ['class' => 'form-control']) !!}
               </div>
           </div><!-- /.form-group -->
-         
+
           <div class="col-md-4">
               <div class="form-group">
                 <label>Variable</label>
