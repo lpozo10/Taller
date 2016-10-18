@@ -8,14 +8,12 @@
         <h3 class="box-title">Estadísticas</h3>
       </div>
       <div class="box-body">
-       <form role="form" method="POST" action="{{ url('/Grafico') }}">
-        {!! csrf_field() !!}
+       <form role="form">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-
                 <label>Periodo</label>
-                {!!Form::select('Periodo', array_pluck($periodo, 'year_init', 'id'), null, ['class' => 'form-control']) !!}
+                {!!Form::select('Periodo', array_pluck($periodo, 'year_init', 'id', 'year_end'), null, ['class' => 'form-control']) !!}
               </div>
           </div><!-- /.form-group -->
          
@@ -33,24 +31,16 @@
               </div>
           </div><!-- /.form-group -->
           </div>
-          
-        <div id="perf_div" class="chart"></div>
-        <div class='box-footer'>
-            <button type='submit' id='graficButton'  class='btn btn-flat btn-primary' data-dismiss='modal'>Ver gráfico</button>
-        </div> 
-        </form>
-        </div>
+       </form>
+       <div id="perf_div" class="chart"></div>
+       
       </div>
     </div>
 
   </div>
 </div>
 
-
-
-
-
-<?= $lava->render('ColumnChart', 'variable', 'perf_div')
+<?= $lava->render('BarChart', 'variable', 'perf_div')
 ?>
 
 @endsection
