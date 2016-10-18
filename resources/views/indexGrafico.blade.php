@@ -8,10 +8,12 @@
         <h3 class="box-title">Estadísticas</h3>
       </div>
       <div class="box-body">
-       <form role="form">
+       <form role="form" method="POST" action="{{ url('/Grafico') }}">
+        {!! csrf_field() !!}
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
+
                 <label>Periodo</label>
                 {!!Form::select('Periodo', array_pluck($periodo, 'year_init', 'id'), null, ['class' => 'form-control']) !!}
               </div>
@@ -32,9 +34,11 @@
           </div><!-- /.form-group -->
           </div>
           
-       </form>
-       <div class="row">
         <div id="perf_div" class="chart"></div>
+        <div class='box-footer'>
+            <button type='submit' id='graficButton'  class='btn btn-flat btn-primary' data-dismiss='modal'>Ver gráfico</button>
+        </div> 
+        </form>
         </div>
       </div>
     </div>

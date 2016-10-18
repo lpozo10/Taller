@@ -15,6 +15,7 @@ use App\Variable;
 
 class chartsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -50,11 +51,13 @@ class chartsController extends Controller
 
     }
 
-    public function datosSegunVariable(int $variable)
+    public function postGrafico(Request $request)
     {
-        if($variable == 1)//temperatura minima
+        
+        
+        if($request->input('Variable') == 1)//temperatura minima
         {
-
+            dd("lala");
         }
         else if ($variable == 2)// temperatura maxima
         {

@@ -14,3 +14,5 @@
 Route::get('/', 'HomeController@index'); 
 Route::get('/Grafico', 'chartsController@index'); 
 Route::get('/MapaYGrafico', 'HomeController@indexAmbos');
+Route::post('/Grafico', 'chartsController@postGrafico');
+
