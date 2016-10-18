@@ -9,6 +9,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Month;
 use App\Rast;
+use App\Period;
+use App\Scenario;
+use App\Variable;
 
 class chartsController extends Controller
 {
@@ -23,17 +26,14 @@ class chartsController extends Controller
 
         $enero = DB::table('rast')->select(DB::raw('month.name,avg(ST_Value(rast, ST_SetSRID(ST_Point(-71.233333,-34.983333), 4326)))'))->join('register', 'register.id', '=', 'rast.id_register')->join('month', 'month.id', '=', 'register.id_month')->groupBy('month.name')->get();
 
-        //dd(count($enero));
-
-        $variable = $lava->DataTable();
-        $variable->addDateColumn('Months of Year')
+        $grafico = $lava->DataTable();
+        $grafico->addDateColumn('Months of Year')
                         ->addNumberColumn('T° mínima');
                         for($i=0; $i<count($enero); $i++)
                         {
-
-                            $variable->addRow([$enero[$i]->name, $enero[$i]->avg]);
+                            $grafico->addRow([$enero[$i]->name, $enero[$i]->avg]);
                         }
-        $lava->ColumnChart('variable', $variable, [
+        $lava->ColumnChart('variable', $grafico, [
             'title' => 'Temperatura Mínima',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
@@ -41,8 +41,11 @@ class chartsController extends Controller
             ]
         ]);
          
+         $periodo = Period::all();
+         $scenario = Scenario::all();
+         $variable = Variable::all();
 
-        return view('indexGrafico')-> with('lava',$lava);
+        return view('indexGrafico')-> with('lava',$lava)->with('periodo',$periodo)->with('scenario',$scenario)->with('variable',$variable);
       
 
     }
@@ -67,69 +70,5 @@ class chartsController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
