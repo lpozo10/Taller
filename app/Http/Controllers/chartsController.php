@@ -25,13 +25,17 @@ class chartsController extends Controller
         $lava = new Lavacharts; // See note below for Laravel
 
         $enero = DB::table('rast')->select(DB::raw('month.name,avg(ST_Value(rast, ST_SetSRID(ST_Point(-71.233333,-34.983333), 4326)))'))->join('register', 'register.id', '=', 'rast.id_register')->join('month', 'month.id', '=', 'register.id_month')->groupBy('month.name')->get();
+        $mes = Month::all();
 
         $grafico = $lava->DataTable();
-        $grafico->addDateColumn('Months of Year')
-                        ->addNumberColumn('T° mínima');
+        $grafico->addDateColumn('Months')
+                        ->addNumberColumn('T° mínima')
+                        ->setDateTimeFormat('M');
                         for($i=0; $i<count($enero); $i++)
                         {
+                        
                             $grafico->addRow([$enero[$i]->name, $enero[$i]->avg]);
+                            //dd($enero);
                         }
         $lava->ColumnChart('variable', $grafico, [
             'title' => 'Temperatura Mínima',

@@ -31,11 +31,9 @@
               </div>
           </div><!-- /.form-group -->
           </div>
-          
        </form>
-       <div class="row">
-        <div id="perf_div" class="chart"></div>
-        </div>
+       <div id="perf_div" class="chart"></div>
+       
       </div>
     </div>
 
