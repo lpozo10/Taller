@@ -28,16 +28,14 @@ class chartsController extends Controller
         $mes = Month::all();
 
         $grafico = $lava->DataTable();
-        $grafico->addDateColumn('Months')
-                        ->addNumberColumn('T° mínima')
-                        ->setDateTimeFormat('M');
+        $grafico->addStringColumn('Meses')
+                        ->addNumberColumn('T° mínima');
                         for($i=0; $i<count($enero); $i++)
                         {
-                        
                             $grafico->addRow([$enero[$i]->name, $enero[$i]->avg]);
                             //dd($enero);
                         }
-        $lava->ColumnChart('variable', $grafico, [
+        $lava->BarChart('variable', $grafico, [
             'title' => 'Temperatura Mínima',
             'titleTextStyle' => [
                 'color'    => '#eb6b2c',
@@ -46,6 +44,7 @@ class chartsController extends Controller
         ]);
          
          $periodo = Period::all();
+        // dd($mes);
          $scenario = Scenario::all();
          $variable = Variable::all();
 

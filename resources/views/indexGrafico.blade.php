@@ -13,7 +13,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Periodo</label>
-                {!!Form::select('Periodo', array_pluck($periodo, 'year_init', 'id'), null, ['class' => 'form-control']) !!}
+                {!!Form::select('Periodo', array_pluck($periodo, 'year_init', 'id', 'year_end'), null, ['class' => 'form-control']) !!}
               </div>
           </div><!-- /.form-group -->
          
@@ -40,11 +40,7 @@
   </div>
 </div>
 
-
-
-
-
-<?= $lava->render('ColumnChart', 'variable', 'perf_div')
+<?= $lava->render('BarChart', 'variable', 'perf_div')
 ?>
 
 @endsection
