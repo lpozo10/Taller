@@ -364,7 +364,7 @@ var map = new ol.Map({
         zoom:4
     })
 });
-map.addControl(new ol.control.FullScreen());
+
 map.addControl(new ol.control.OverviewMap({}));
 
 var typeSelect = document.getElementById('type');
