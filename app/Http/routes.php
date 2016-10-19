@@ -14,22 +14,3 @@
 Route::get('/', 'HomeController@index'); 
 Route::get('/Grafico', 'chartsController@index'); 
 Route::get('/MapaYGrafico', 'HomeController@indexAmbos');
-
-Route::get('ajax', function()
-{
-	return View::make('index');
-});
-
-
-Route::post('gethint', function()
-{
-
-
-	
-	return Response::json( array(
-		'resultado' => 5, 
-		'sms' => " Parametro AJAX y JSON", 
-		
-		));
-
-});
